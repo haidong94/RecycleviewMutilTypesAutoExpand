@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Item item = new Item("this is item" + (i + 1), "this is child item" + (i + 1), true);
                 items.add(item);
             }else {
-                Item item = new Item("this is item" + (i + 1),"", false);
+                Item item = new Item("this is item" + (i + 1),"đdđ", false);
                 items.add(item);
             }
 

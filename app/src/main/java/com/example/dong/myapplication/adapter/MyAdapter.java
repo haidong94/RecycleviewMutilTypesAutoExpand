@@ -2,6 +2,7 @@ package com.example.dong.myapplication.adapter;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,12 +37,15 @@ class MyViewHolderWithChild extends RecyclerView.ViewHolder {
     View image;
     TextView tvChild,tvsubChild;
     ExpandableLinearLayout expandlayout;
+    RecyclerView recyclerView;
     public MyViewHolderWithChild(View itemView) {
         super(itemView);
         image=itemView.findViewById(R.id.image);
         tvChild=itemView.findViewById(R.id.tvChild);
         tvsubChild=itemView.findViewById(R.id.tvsubChild);
         expandlayout=itemView.findViewById(R.id.expandlayout);
+        recyclerView=itemView.findViewById(R.id.recyclerView);
+
     }
 }
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -99,7 +104,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 viewholder.tvChild.setText(item.getText());
 
                 viewholder.expandlayout.setInRecyclerView(true);
-                viewholder.expandlayout.setExpanded(expandState.get(position));
+               // viewholder.expandlayout.setExpanded(expandState.get(position));
+                viewholder.expandlayout.setExpanded(true); //auto expand
+
                 viewholder.expandlayout.setListener(new ExpandableLayoutListenerAdapter() {
 
                     @Override
@@ -117,6 +124,22 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
                 });
+
+                List<String> a= new ArrayList<>();
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                a.add("đ");
+                RecyclerExamAdapter adapter=new RecyclerExamAdapter(a,context);
+                viewholder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                viewholder.recyclerView.setAdapter(adapter);
 
                 viewholder.image.setRotation(expandState.get(position)?180f:0f);
                 viewholder.image.setOnClickListener(new View.OnClickListener() {
